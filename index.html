@@ -1,7 +1,63 @@
-<html>
-	<head>
-		<script src='http://blog.sethladd.com/2011/09/box2d-javascript-example-walkthrough.html'></script>
-	</head>
-	<body>
-	</body>
+<!doctype html>
+<head>
+	<title>Adventure!</title>
+	<link rel="stylesheet" href="main.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js" type="text/javascript"></script>
+	<link href="http://fonts.googleapis.com/css?family=Open+Sans:400" rel="stylesheet" type="text/css">
+	<script src="coffee-script.js"></script>
+	<script src="game.js"></script>
+	<script>
+		function load(code) {
+			var js = CoffeeScript.compile(code);
+			eval(js);
+		}
+
+		$('#run').live("click", function() {
+			var code = $('textarea').val();
+			$('textarea').val("");
+			load(code);
+		});
+	</script>
+
+</head>
+
+<body>
+	<div id="container">
+		<h1>adventure quest builder</h1>
+		<h3>Go make a world...</h3>
+
+		<canvas id="game"></canvas>
+
+		<div id="controls">
+			<div id="controls-in">
+				<div id="direction">
+					<span class="butt" id="joystick"></span>
+				</div>
+
+				<div id="actions">
+					<div class="butt" id="talk"></div>
+				</div>
+			</div>
+		</div>
+
+		<h6>Type below</h6>
+
+		<div id="code">
+			<textarea cols="40" rows="5" name="code" placeholder="you = new Player 50
+				tree1 = new Tree 10, 20
+				wimp = new Soldier 100
+				villager = new Villager 300
+				house1 = new House 50, 200
+				more coming soon..."></textarea>
+			<button id="run" name="code">Run</button>
+			<!-- <button id="save" value="Save">Save</button> -->
+		</div>
+
+		<br />
+		<div id="by">
+			<span>Built by @revivek and @dproi at Hack n' Jill</span>
+		</div>
+	</div>
+</body>
+
 </html>
