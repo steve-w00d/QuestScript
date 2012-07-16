@@ -1,7 +1,7 @@
 #
 # Questscript
 # 
-# quest.rb
+# app.rb
 # Sinatra server for Questscript
 #
 # Built by Vivek Patel and Devon Peticolas
