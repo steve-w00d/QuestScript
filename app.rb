@@ -7,6 +7,7 @@
 
 require 'sinatra'
 require 'mongo'
+require 'coffee-script'
 
 # DATABASE CONNECTION ---------------------------------
 #@conn	= Mongo::Connection.new
