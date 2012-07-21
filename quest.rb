@@ -11,9 +11,9 @@ require 'sinatra'
 require 'mongo'
 
 # DATABASE CONNECTION ---------------------------------
-@conn	= Mongo::Connection.new
-@db		= @conn['questscript']
-@coll	= @db['games']
+#@conn	= Mongo::Connection.new
+#@db		= @conn['questscript']
+#@coll	= @db['games']
 
 
 # HELPERS ---------------------------------------------
@@ -47,5 +47,5 @@ post '/save' do
 	doc = {"author" => game["author"],
 		   "title" => game["title"],
 		   "code" => game["code"]}
-	@coll.insert(doc)
+	#@coll.insert(doc)
 end	
