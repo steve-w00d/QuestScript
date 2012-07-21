@@ -15,7 +15,7 @@ require 'mongo'
 
 # RENDERING -------------------------------------------
 
-get '/javascripts/*.js' do
+get '/javascript/*.js' do
   filename = "coffeescript/#{params[:splat].first}"
   coffee filename.to_sym
 end
