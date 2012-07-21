@@ -1,7 +1,7 @@
 #
 # Questscript
 # 
-# quest.rb
+# app.rb
 # Sinatra server for Questscript
 #
 # Built by Vivek Patel and Devon Peticolas
@@ -9,6 +9,7 @@
 
 require 'sinatra'
 require 'mongo'
+require 'coffee-script'
 
 # DATABASE CONNECTION ---------------------------------
 #@conn	= Mongo::Connection.new
