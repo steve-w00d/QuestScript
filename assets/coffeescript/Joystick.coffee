@@ -4,12 +4,19 @@ Joystick = (->
 	DOWN	= 2
 	RIGHT	= 3
 	direction	= 0
+	intent  = false
 
 	# public methods -----------------
 	pub = {}
 
+	pub.setIntent = (bool) ->
+		intent = bool
+
+	pub.getIntent = ->
+		intent
+
 	# sets the cardinal direction depending
-	# on a code (mapped to arrow key codes)
+	# on a code (mapped to arrow key codes)	
 	pub.setDirection = (code) ->
 		switch code
 			when 37
