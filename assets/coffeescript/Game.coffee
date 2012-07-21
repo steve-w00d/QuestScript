@@ -24,16 +24,16 @@ class Screen
 		
 	redraw: ->
 		@clear()
-		for el in @elements:
+		for el in @elements
 			ctx.drawImage(el.sprite, el.x, el.y)
-
+	
 	addToScreen: (element)->
 		@elements.push element
 
 class Element
 	constructor: (@movement = null, @speech = null)->
 		@sprite = null
-		@x, @y
+		@x = @y = 0
 		game.currentScreen.addToScreen this
 	
 	says: (@speech)->
