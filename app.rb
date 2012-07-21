@@ -15,7 +15,6 @@ require 'mongo'
 
 # RENDERING -------------------------------------------
 
-set :views, File.dirname(__FILE__) + '/assets'
 get '/javascripts/*.js' do
   filename = "coffeescript/#{params[:splat].first}"
   coffee filename.to_sym
