@@ -6,6 +6,10 @@
   position: relative;
   /* This prevents unwanted scrollbars from showing up on the body and wrapper in IE. */
   overflow: hidden;
+
+  background-color: white;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 0 10px #eee;
 }
 
 .CodeMirror-scroll {
@@ -56,6 +60,7 @@
   border-right: 1px solid #eee;
   min-width: 2em;
   height: 100%;
+  box-shadow: 0 0 10px #eee;
 }
 .CodeMirror-gutter-text {
   color: #aaa;
