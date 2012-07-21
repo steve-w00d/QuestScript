@@ -1,7 +1,6 @@
 exports = this
 $ ->
   canvas = document.getElementById('game') 
-  ctx = canvas.getContext('2d')
   stepsPerMove = 5
 
   class Game
@@ -13,6 +12,7 @@ $ ->
     initGraphics: ->
       canvas.height = 8 * 16
       canvas.width = 16 * 16
+      @ctx = canvas.getContext('2d')
 
   class Screen
     constructor: (@name)->
@@ -25,7 +25,7 @@ $ ->
         @grid[x] = new Array(10)
 
     clear: ->
-      ctx.clearRect(0,0, canvas.width, canvas.height)
+      game.ctx.clearRect(0,0, canvas.width, canvas.height)
 
     moveElements: ->
       for el in @elements
@@ -33,10 +33,10 @@ $ ->
         if @grid[el.expectedX][el.expectedY]?
           el.dontMove()
     
-    redraw: ->
-      @clear()
+    draw: ->
       for el in @elements
-        ctx.drawImage(el.sprite, el.currentX, el.currentY)
+        if el.spriteReady?
+          game.ctx.drawImage(el.img, el.currentX, el.currentY)
     
     addToScreen: (element)->
       @elements.push element
@@ -45,15 +45,24 @@ $ ->
   
   class Element
     constructor: (@x=0, @y=0)->
-      @sprite = @movement = null
-      @expected_x = @x, @expected_y = @y
+      @expectedX = @currentX = @x
+      @expectedY = @currentY = @y
+      @loadSprite(@sprite)
       game.currentScreen.addToScreen(this)
     
+    loadSprite: (sprite)->
+      @img = new Image()
+      @spriteReady = false
+      _this = this
+      @img.onload = ->
+        _this.spriteReady = true
+      if sprite?
+        @img.src = sprite
+
     says: (@speech)->
     talk: ->
       console.log @speech
     
-    is: (@sprite)->
     does: (@movement)->
 
     move: ->

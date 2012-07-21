@@ -1,5 +1,6 @@
-( ->
-	exports.speechBubble = ( ->
+exports = this
+$ ->
+	exports.speechBubble = ->
 		bubble = document.getElementById("speech-bubble");
 		
 		# public methods -----------------
@@ -11,7 +12,5 @@
 			
 		pub.hide = ->
 			bubble.style.display = "none";	
-	)
-)()
-
-exports.speechBubble.show("hello");
+	
+	exports.speechBubble.show("hello");

@@ -16,6 +16,9 @@ require 'coffee-script'
 
 # RENDERING -------------------------------------------
 
+set :root, File.dirname(__FILE__)
+set :public_folder, Proc.new { File.join(root, 'public') }
+
 get '/javascript/*.js' do
   filename = "coffeescript/#{params[:splat].first}"
   coffee filename.to_sym
