@@ -1,18 +1,27 @@
 exports = this
 $ ->
   canvas = document.getElementById('game') 
-  stepsPerMove = 5
+  stepSize = 0.2
 
   class Game
     constructor: (@name, @canvas = canvas)->
       @currentScreen = new Screen('startScreen')
       @screens = [@currentScreen]
       @initGraphics()
+      @beginLoop()
 
     initGraphics: ->
       canvas.height = 8 * 16
       canvas.width = 16 * 16
       @ctx = canvas.getContext('2d')
+    
+    beginLoop: ->
+      screen = @currentScreen
+      setInterval ->
+        screen.clear()
+        screen.moveElements()
+        screen.draw()
+      , 500
 
   class Screen
     constructor: (@name)->
@@ -20,9 +29,9 @@ $ ->
       @initGrid()
     
     initGrid: ->
-      @grid = new Array(10)
+      @grid = new Array(16)
       for x in [0..9]
-        @grid[x] = new Array(10)
+        @grid[x] = new Array(8)
 
     clear: ->
       game.ctx.clearRect(0,0, canvas.width, canvas.height)
@@ -36,7 +45,7 @@ $ ->
     draw: ->
       for el in @elements
         if el.spriteReady?
-          game.ctx.drawImage(el.img, el.currentX, el.currentY)
+          game.ctx.drawImage(el.img, 16*el.currentX, 16*el.currentY)
     
     addToScreen: (element)->
       @elements.push element
@@ -64,14 +73,17 @@ $ ->
       console.log @speech
     
     does: (@movement)->
-
+    
     move: ->
-      if @x is @expectedX and @y is @expectedY
+      console.log @currentX, @expectedX, @currentY, @expectedY
+      if @currentX is @expectedX and @currentY is @expectedY
         m = @movement()
         @expectedX = m.x
         @expectedY = m.y
-      @currentX += (@expectedX - @x)/stepsPerMove
-      @currentY += (@expectedY - @y)/stepsPerMove
+      @currentX += (@expectedX - @x)*stepSize
+      @currentY += (@expectedY - @y)*stepSize
+      @currentX.toPrecision(2)
+      @currentY.toPrecision(2)
     dontMove: ->
       @expectedX = @x
       @expectedY = @y
